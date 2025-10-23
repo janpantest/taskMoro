@@ -1,0 +1,22 @@
+{
+  "name": "pw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "runBrowser": "npx playwright test --project=chromium --headed",
+    "singleRun": "npx playwright test --project=chromium --headed  --workers=1",
+    "moroCh": "npx playwright test --project=chromium --headed  --workers=1 --grep @moro",
+    "moroFF": "npx playwright test --project=firefox --headed  --workers=1 --grep @moro",
+    "moroSaf": "npx playwright test --project=webkit --headed  --workers=1 --grep @moro",
+    "runReport": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.48.1",
+    "@types/node": "^22.8.6",
+    "dotenv": "^16.6.1"
+  }
+}
