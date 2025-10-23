@@ -9,8 +9,8 @@ test('Moro workflow', { tag: '@moro' }, async ({ page }) => {
     await moroSteps.goToGoogle(page, url)
     await moroSteps.enterString(page, moroString);
 
-    // timeout for google captcha for manual solving
-    await page.waitForTimeout(20000);
+    // timeout for manual solving of google captcha 
+    // await page.waitForTimeout(20000);
 
     await moroSteps.checkResultPage(page, resultPageTitle);
     await moroSteps.goToMorosystem(page);
