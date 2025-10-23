@@ -15,11 +15,12 @@ export default function() {
   let response;
   const taskName = `Task_${Math.floor(Math.random() * 10000)}`;
   let numberOfIds;
+  let responseBody;
 
   describe('Get all tasks', () => {
     response = http.get(`${baseUrl}/tasks`);
 
-    const responseBody = JSON.parse(response.body);
+    responseBody = JSON.parse(response.body);
 
     numberOfIds = responseBody.length;
     expect(responseBody.length, 'Body not to be empty').to.be.greaterThan(0);
@@ -33,10 +34,11 @@ export default function() {
       }
     );
 
-    const responseBody = JSON.parse(response.body);
+    responseBody = JSON.parse(response.body);
     taskId = responseBody.id;
 
     expect(response.status, 'response status').to.equal(200);
+    expect(responseBody.text, 'Task name').to.equal(taskName);
     sleep(1);
   });
 
@@ -46,7 +48,11 @@ export default function() {
       }
     );
 
+    responseBody = JSON.parse(response.body);
+
     expect(response.status, 'response status').to.equal(200);
+    expect(responseBody.text, 'Task name').to.equal(`${taskName}_updated`);
+
     sleep(1);
   });
 
