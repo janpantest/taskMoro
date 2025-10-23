@@ -2,6 +2,8 @@ import http from 'k6/http';
 import { sleep } from 'k6';
 import { describe, expect } from 'https://jslib.k6.io/k6chaijs/4.3.4.3/index.js';
 import { createTask } from '../payloads/createTask.js';
+import { checkAllKeysExist } from '../helpers/expects.js';
+import { keys } from '../constants/keys.js';
 
 export const options = {
   vus: 1,
@@ -39,6 +41,7 @@ export default function() {
 
     expect(response.status, 'response status').to.equal(200);
     expect(responseBody.text, 'Task name').to.equal(taskName);
+    checkAllKeysExist(responseBody, keys);
     sleep(1);
   });
 
@@ -52,6 +55,7 @@ export default function() {
 
     expect(response.status, 'response status').to.equal(200);
     expect(responseBody.text, 'Task name').to.equal(`${taskName}_updated`);
+    checkAllKeysExist(responseBody, keys);
 
     sleep(1);
   });
