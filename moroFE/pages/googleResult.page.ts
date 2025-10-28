@@ -3,16 +3,17 @@ import { expect, Locator, Page } from '@playwright/test';
 export class GoogleResultPage {
     readonly page: Page;
     readonly moroLink: Locator;
+    readonly moroLinkXpath: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.moroLink = this.page.getByRole('link', { name: 'MoroSystems - užitečná IT řeš' });
-
+        this.moroLinkXpath = this.page.locator('//h3[contains(text(), "MoroSystems - smysluplná IT řešení a technologické inovace")]');
     }
 
     async clickMoroLink(): Promise<void> {
-        await expect(this.moroLink).toBeVisible();
-        await this.moroLink.click();
+        await expect(this.moroLinkXpath).toBeVisible();
+        await this.moroLinkXpath.click();
     }
 
     async checkResultPage(title: string): Promise<void> {
